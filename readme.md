@@ -4,7 +4,7 @@
 
 This is a C driver program for operating a HillCrest Labs (Bosch) BNO080 IMU sensor via I2C on a Raspberry Pi. Compared to the BNO055, the BNO080 has a improved accuracy and more features through Hillcrest Labs SH2 firmware, promises higher fusion sampling rate up to 400Hz (BNO055: 100Hz). In the BNO080, the accelerometer resolution has been reduced to 12-bit (BNO55: 14-bit).
 
-<img src="sparkfun-bno080.png" height="320px" width="267px">
+<img src="sparkfun-bno080.png" height="267px" width="320px">
 
 ## I2C bus connection
 
