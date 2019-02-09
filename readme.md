@@ -2,13 +2,13 @@
 
 ## Background
 
-This is a C driver program for operating a HillCrest Labs (Bosch) BNO080 IMU sensor via I2C on a Raspberry Pi. Compared to the BNO055, the BNO080 has a improved accuracy and more features through Hillcrest Labs SH2 firmware, promises higher fusion sampling rate up to 400Hz (BNO055: 100Hz). In the BNO080, the accelerometer resolution has been reduced to 12-bit (BNO55: 14-bit).
+This is a C driver program for operating a HillCrest Labs (Bosch) BNO080 IMU sensor via I2C on a Raspberry Pi. Compared to the BNO055, the BNO080 has a improved accuracy and more features through Hillcrest Labs SH2 firmware, promises higher fusion sampling rate up to 400Hz (BNO055: 100Hz). In the BNO080, the accelerometer resolution has been reduced to 12-bit (BNO055: 14-bit).
 
 <img src="sparkfun-bno080.png" height="267px" width="320px">
 
 ## I2C bus connection
 
-On the Raspberry Pi I2C bus, the Sparkfun sensor board has I2C protcol as the default, and it responds  on the I2C bus with the slave address 0x4b. Per BNO080 datasheet, two I2C addresses are possible: 0x4a or 0x4b, depending on the SA0 pin level. Sparkfun by default pulls the SA0 pin up. If jumper SJ2 gets closed SA0 will be pulled down and sets the address 0x4a.
+On the Raspberry Pi I2C bus, the Sparkfun sensor board has I2C protcol as the default, and it responds  on the I2C bus with the slave address 0x4b. Per BNO080 datasheet, two I2C addresses are possible: 0x4a or 0x4b, depending on the SA0 pin level. Sparkfun by default pulls the SA0 pin up. If jumper SJ2 gets closed, SA0 will be pulled down and sets the address 0x4a.
 
 ```
 root@pi-ws01:/home/pi# i2cdetect -y 1
@@ -25,13 +25,13 @@ root@pi-ws01:/home/pi# i2cdetect -y 1
 
 ## Sensor communication protocol
 
-Unlike the BNO050 sensor from Bosch, the BNO080 is using the Hillcrest Labs own communication protocol SHTP (Sensor Hub Transport Protocol). Hillcrest Labs provides a Open-Source sensor hub driver API reference implementation in github (licensed under Apache 2.0), implemented with STM32 MCU. I found the Arduino driver for BNO080 easier to understand.
+Unlike the BNO055 sensor from Bosch, the BNO080 is using the Hillcrest Labs own communication protocol SHTP (Sensor Hub Transport Protocol). Hillcrest Labs provides a Open-Source sensor hub driver API reference implementation in github (licensed under Apache 2.0), implemented with STM32 MCU. I found the Arduino driver for BNO080 easier to understand.
 
 ## Code compilation
 
 Compiling the program:
 ````
-root@pi-ws01:/home/pi/bno080# make
+pi@nanopi-neo2:~/pi-bno080 $ make
 cc -O3 -Wall -g   -c -o i2c_bno080.o i2c_bno080.c
 cc -O3 -Wall -g   -c -o getbno080.o getbno080.c
 cc i2c_bno080.o getbno080.o -o getbno080
