@@ -6,6 +6,10 @@ This is a C driver program for operating a HillCrest Labs (Bosch) BNO080 IMU sen
 
 <img src="sparkfun-bno080.png" height="267px" width="320px">
 
+### Note
+
+This is a early work fragment and not a completed project. The SHTP protocol running over I2C requires more analysis / work on the asynchronous communication model.
+
 ## I2C bus connection
 
 On the Raspberry Pi I2C bus, the Sparkfun sensor board has I2C protcol as the default, and it responds  on the I2C bus with the slave address 0x4b. Per BNO080 datasheet, two I2C addresses are possible: 0x4a or 0x4b, depending on the SA0 pin level. Sparkfun by default pulls the SA0 pin up. If jumper SJ2 gets closed, SA0 will be pulled down and sets the address 0x4a.
@@ -38,6 +42,21 @@ cc i2c_bno080.o getbno080.o -o getbno080
 ````
 
 ## Example output
+
+Retrieving sensor information:
+```
+pi@nanopi-neo2:~/pi-bno080 $ ./getbno080 -a 0x4b -t inf
+Test 0 data-0 248
+Debug: CMD reportID [F1] REPseq [00] CMD [07] CMDseq [01] RESPseq [00] R0 [00]
+
+BNO080 Information at Sat Apr  6 09:04:54 2019
+----------------------------------------------
+Part 10003608 : Version 3.2.7 Build 370 Last Reset: Internal System Reset
+Part 10003606 : Version 1.2.4 Build 230 Last Reset: Not Applicable
+Calib. ON/OFF : ACC=ON GYRO=OFF MAG=ON PLANAR-ACC=OFF
+SHTP Errors # : 0 entries
+Sensor Serial : [0.000000]
+```
 
 Resetting the sensor (verbose):
 ```
