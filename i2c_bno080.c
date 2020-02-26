@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
@@ -741,7 +742,7 @@ int get_eul(struct bnoeul *bnod_ptr) {
  *  get_qua() - read Quaternation data into the global struct   *
  * ------------------------------------------------------------ */
 int get_qua(struct bnoqua *bnod_ptr) {
-   char data[100];
+   char data[100] = { '\0' };
    int16_t buf = ((int16_t)data[1] << 8) | data[0]; 
    if(verbose == 1) printf("Debug: Quaternation W: LSB [0x%02X] MSB [0x%02X] INT16 [%d]\n", data[0], data[1],buf);
    bnod_ptr->quater_w = (double) buf / 16384.0;
@@ -764,7 +765,7 @@ int get_qua(struct bnoqua *bnod_ptr) {
  *  get_gra() - read gravity vector into the global struct      *
  * ------------------------------------------------------------ */
 int get_gra(struct bnogra *bnod_ptr) {
-   char data[100];
+   char data[100] = { '\0' };
    int16_t buf = ((int16_t)data[1] << 8) | data[0];
    if(verbose == 1) printf("Debug: Gravity Vector H: LSB [0x%02X] MSB [0x%02X] INT16 [%d]\n", data[0], data[1],buf);
 
@@ -780,7 +781,7 @@ int get_gra(struct bnogra *bnod_ptr) {
  *  get_lin() - read linear acceleration into the global struct *
  * ------------------------------------------------------------ */
 int get_lin(struct bnolin *bnod_ptr) {
-   char data[100];
+   char data[100] = { '\0' };
    int16_t buf = ((int16_t)data[1] << 8) | data[0];
    if(verbose == 1) printf("Debug: Linear Acceleration H: LSB [0x%02X] MSB [0x%02X] INT16 [%d]\n", data[0], data[1],buf);
 
