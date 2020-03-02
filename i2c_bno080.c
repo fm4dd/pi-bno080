@@ -145,17 +145,18 @@ int receivePacket(void) {
  * shtp_init() - Enables the I2C bus communication. Raspberry   *
  * Pi 2 uses i2c-1, RPI 1 used i2c-0, NanoPi also uses i2c-0.   *
  * ------------------------------------------------------------ */
-void shtp_init(char *i2caddr) {
+void shtp_init(char *i2cbus, char *i2caddr) {
 
-   if((i2cfd = open(I2CBUS, O_RDWR)) < 0) {
-      printf("Error failed to open I2C bus [%s].\n", I2CBUS);
+   if((i2cfd = open(i2cbus, O_RDWR)) < 0) {
+      printf("Error failed to open I2C bus [%s].\n", i2cbus);
       exit(-1);
    }
+   if(verbose == 1) printf("Debug: I2C bus device: [%s]\n", i2cbus);
    /* --------------------------------------------------------- *
     * Set I2C device (BNO080 I2C address is  0x4a or 0x4b)      *
     * --------------------------------------------------------- */
    int addr = (int)strtol(i2caddr, NULL, 16);
-   if(verbose == 1) printf("Debug: Sensor I2C address: [0x%02X]\n", addr);
+   if(verbose == 1) printf("Debug: Sensor address: [0x%02X]\n", addr);
 
    if(ioctl(i2cfd, I2C_SLAVE, addr) != 0) {
       printf("Error can't find sensor at I2C address [0x%02X].\n", addr);

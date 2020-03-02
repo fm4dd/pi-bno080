@@ -194,7 +194,7 @@ typedef enum {
 /* ------------------------------------------------------------ *
  * external function prototypes for I2C bus communication code  *
  * ------------------------------------------------------------ */
-extern void shtp_init(char*);             // Start I2C and SHTP msgs
+extern void shtp_init(char*, char*);      // Start I2C and SHTP msgs
 extern int set_page0();                   // set register map page 0
 extern int set_page1();                   // set register map page 1
 extern int get_calstat(struct bnocal*);   // read calibration status

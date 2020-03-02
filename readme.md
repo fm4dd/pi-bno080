@@ -8,7 +8,7 @@ This is a C driver program for operating a HillCrest Labs (Bosch) BNO080 IMU sen
 
 ### Note
 
-This is a early work fragment and not a completed project. The SHTP protocol running over I2C requires more analysis / work on the asynchronous communication model.
+This is a early work fragment and not a completed project. The SHTP protocol running over I2C requires more analysis / work on the asynchronous communication model. I abandoned this project but keep it online as a starting point for others. 
 
 ## I2C bus connection
 
